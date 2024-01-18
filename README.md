@@ -10,12 +10,19 @@ Try running the following commands:
 Run commands:
 
 dbt run --select my_model                       # run my_model
+
 dbt run --select my_model my_model_2            # run my_model and my_model_2
+
 dbt run --select my_model+                      # run my_model and all children
+
 dbt run --select +my_model                      # run my_model and all parents
+
 dbt run --select +my_model+                     # run my_model, all of its parents, and all of its children
+
 dbt run --select @my_model                      # run my_model, all parents, all children, AND all parents of all children
+
 dbt run --select my_model+ --exclude my_model_2 # run my_model and all children EXCEPT my_model_2
+
 dbt run --select my_model --target dev_l        # run my_model using a L warehouse (targets defined in profiles.yml
 
 run all tests:
