@@ -35,4 +35,19 @@ models:
               to: ref('stg_customers')
               field: customer_id
               severity: 'error'
-          
+  - name: stg_jaffle_shop__customers
+    description: one unique customer per row
+    columns: 
+      - name: customer_id
+        description: the primary key for stg_jaffle_shop__customers
+        tests:
+          - unique
+          - not_null
+  - name: stg_jaffle_shop__orders
+    description: one unique order per row
+    columns: 
+      - name: order_id
+        description: the primary key for stg_jaffle_shop__orders
+        tests:
+          - unique
+          - not_null

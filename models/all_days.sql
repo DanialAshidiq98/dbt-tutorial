@@ -1,5 +1,5 @@
 {{ config (
-    materialized="table"
+    materialized="view"
 )}}
 
 {{ dbt_utils.date_spine(
