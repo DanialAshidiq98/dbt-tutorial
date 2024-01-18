@@ -1,3 +1,13 @@
+-- Import CTEs
+
+-- Logical CTEs
+
+-- Final CTE
+
+-- Simple Select Statement
+
+
+
 with orders as (
 
     select * from {{ ref('stg_orders')}}
@@ -11,17 +21,26 @@ payment as (
 
 payment_order as (
 
-    select order_id, coalesce(SUM(CASE WHEN status='success' THEN amount END),0) as amount
+    select 
+        order_id,
+        coalesce(SUM(
+            CASE WHEN 
+                status='success' 
+            THEN amount 
+            END),0) as amount
     from payment
-
     group by 1
 ),
 
 
 final as (
 
-    select payment_order.order_id as order_id, payment_order.amount,orders.order_date,orders.customer_id as customer_id
-    from payment_order left join orders using (order_id)
+    select 
+        payment_order.order_id as order_id,
+        orders.customer_id as customer_id,
+        payment_order.amount,orders.order_date
+    from payment_order 
+    left join orders using (order_id)
 
     -- select
     -- orders.order_id,
