@@ -3,6 +3,9 @@ version: 2
 models:
   - name: stg_payments
     description: one unique payment per row
+    # tests:
+    #   - dbt_utils.expression_is_true:
+    #       expression: "amount > 5"
     columns: 
       - name: payment_id
         description: the primary key for stg_payments
@@ -18,4 +21,12 @@ models:
                 - coupon
                 - bank_transfer
                 - gift_card
-          
+      # - name: amount
+      #   description: Dollars spent per order
+      #   tests:
+      #     - dbt_expectations.expect_column_values_to_be_between:
+      #         min_value: 5
+      #         row_condition: "order_id is not null"
+      #         strictly: True
+      #         config:
+      #           - severity: warn
